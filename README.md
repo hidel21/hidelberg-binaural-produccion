@@ -177,4 +177,4 @@ Este repositorio agrupa cinco módulos personalizados para Odoo 17, probados en 
 ## 📬 Contacto
 
 Desarrollado por **Hidelberg Martínez**
-GitHub: [@hidel21](https://github.com/hidel21)
+correo: [Hidelberg Martinez](mailto:hidelmartinez21@gmail.com)
