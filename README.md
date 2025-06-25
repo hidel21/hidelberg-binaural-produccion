@@ -20,7 +20,7 @@ Este repositorio contiene módulos desarrollados como parte del proceso técnico
    ```bash
    git clone https://github.com/hidel21/hidelberg-binaural-produccion.git
    cd hidelberg-binaural-produccion
-````
+  ````
 
 2. Ejecuta el script de instalación:
 
