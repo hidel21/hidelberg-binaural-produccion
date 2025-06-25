@@ -1,266 +1,175 @@
-# 🧪 Modulos Desarrollados por Hidelberg Martinez
+# 🧪 Módulos desarrollados por Hidelberg Martínez
 
-Este repositorio contiene módulos desarrollados como parte del proceso técnico para Binaural, implementados sobre Odoo 17 y probados en entorno Docker.
-
----
-
-## 📦 Módulos desarrollados
-
-- `account_fiscal_classification`: Clasificación fiscal en facturas
-- `hr_birthday_reminder`: Recordatorio de cumpleaños vía email
-- `pos_table_number`: Número de mesa en órdenes POS
-- `stock_quality_check`: Validación de calidad en transferencias de inventario
-- `product_warranty`: Garantía de productos y propagación en ventas
+Este repositorio agrupa cinco módulos personalizados para Odoo 17, probados en Docker, que añaden funcionalidades de contabilidad, RRHH, POS, control de calidad y garantías.
 
 ---
 
-## ⚙️ Instalación del entorno
+## 📦 Módulos
 
-1. Clona el repositorio:
+- **account_fiscal_classification**  
+  Clasificación fiscal en facturas.
+- **hr_birthday_reminder**  
+  Recordatorio de cumpleaños vía email.
+- **pos_table_number**  
+  Número de mesa en órdenes POS.
+- **stock_quality_check**  
+  Validación de calidad en transferencias de inventario.
+- **product_warranty**  
+  Gestión y propagación de garantía en ventas.
+
+---
+
+## ⚙️ Instalación
+
+1. **Clonar el repositorio**  
    ```bash
    git clone https://github.com/hidel21/hidelberg-binaural-produccion.git
    cd hidelberg-binaural-produccion
-  ````
+   ```
 
-2. Ejecuta el script de instalación:
+2. **Ejecutar el instalador**
 
    ```bash
    ./install.sh
    ```
+3. **Acceder a Odoo**
 
-3. Accede a Odoo:
-
-   * Navegador: [http://localhost:8069](http://localhost:8069)
-   * Crea una base de datos (ej: `binaural_test`)
-   * Activa el modo desarrollador
-   * Actualiza la lista de módulos e instala los desarrollados
-
----
-
-## ✅ Pruebas Funcionales Manuales
-
-**Guía de Pruebas Funcionales para Módulos Personalizados en Odoo 17**
+   * Navegar a: `http://localhost:8069`
+   * Crear base de datos (p. ej. `binaural_test`)
+   * Activar modo desarrollador
+   * Actualizar lista de módulos e instalar los desarrollados
 
 ---
 
-### 1. account\_fiscal\_classification
+## ✅ Pruebas funcionales manuales
 
-#### Instalación y verificación del módulo
+### 1. **account\_fiscal\_classification**
 
-* Ir a **Ajustes > Actualizar lista de módulos**
-* Buscar "Clasificación Fiscal en Facturas"
-* Confirmar que el módulo está instalado
+#### Instalación y verificación
 
-#### Crear y modificar facturas
+* Ajustes ▶ Actualizar lista de módulos
+* Buscar “Clasificación Fiscal en Facturas”
+* Confirmar módulo instalado
 
-* Ir a **Contabilidad > Facturas** y hacer clic en "Crear"
-* Completar los campos básicos:
+#### Flujo de facturas
 
-  * Cliente
-  * Producto
-  * Cantidad y precio
-* Verificar que el campo **Clasificación Fiscal** tenga el valor por defecto "A"
-* Cambiar el valor a "B" y guardar. Luego a "C" y guardar nuevamente
+1. Contabilidad ▶ Facturas ▶ Crear
+2. Completar Cliente, Producto, Cantidad y Precio
+3. Verificar campo **Clasificación Fiscal** (“A” por defecto)
+4. Cambiar a “B” y “C” → guardar
 
-#### Verificación en vista lista
+#### Validación de lista y reporte
 
-* Confirmar que la columna "Clasificación Fiscal" aparece y muestra el valor correcto
-* Aplicar filtros: A, B y C. Confirmar que los resultados coinciden
+* Comprobar columna “Clasificación Fiscal” y filtros (A/B/C)
+* Imprimir reporte ▶ confirmar línea “Clasificación Fiscal: A/B/C”
 
-#### Generación de reporte
+#### Casos y permisos
 
-* Seleccionar una factura y hacer clic en "Imprimir"
-* Confirmar que aparece la línea:
-
-  * "Clasificación Fiscal: A/B/C"
-
-#### Pruebas adicionales
-
-* Crear facturas de cliente y proveedor (out\_invoice, in\_invoice) y confirmar funcionamiento
-* Validar y anular facturas. Confirmar que la clasificación se mantiene
-* Confirmar que el historial (tracking) refleja cambios de clasificación
-* Validar comportamiento con diferentes tipos de usuario y permisos
+* Facturas tipo cliente/proveedor, validar/anular
+* Historial de cambios en chatter
+* Pruebas con distintos usuarios y roles
 
 ---
 
-### 2. hr\_birthday\_reminder
+### 2. **hr\_birthday\_reminder**
 
-#### Configuración inicial
+#### Configuración
 
-* Ir a **RRHH > Empleados** y verificar instalación del módulo
-* Confirmar que el correo de la empresa está configurado correctamente
+* RRHH ▶ Empleados ▶ verificar módulo
+* Ajustes ▶ Técnico ▶ Acciones Programadas ▶ “Recordatorio de Cumpleaños”
 
-#### Crear empleado de prueba
+  * Intervalo: diario
+  * Forzar ejecución ▶ sin errores
 
-* Nombre: Empleado Prueba
-* Fecha de cumpleaños: dentro de 7 días
-* Correo: [prueba@empresa.com](mailto:prueba@empresa.com)
+#### Verificación de envío
 
-#### Verificación del cron
+* Ajustes ▶ Técnico ▶ Correos Salientes
 
-* Ir a **Ajustes > Técnico > Acciones Programadas**
-* Buscar "Recordatorio de Cumpleaños"
-* Confirmar que está activo, con intervalo diario y última ejecución reciente
-* Forzar ejecución y verificar ausencia de errores
+  * Asunto, destinatario y contenido (nombre y fecha)
+* Chatter del empleado ▶ registro de envío
 
-#### Verificar correo
+#### Casos y permisos
 
-* Ir a **Ajustes > Técnico > Correos > Correos Salientes**
-* Confirmar:
-
-  * Asunto correcto
-  * Destinatario: [prueba@empresa.com](mailto:prueba@empresa.com)
-  * Cuerpo contiene nombre y fecha de cumpleaños
-
-#### Verificación en empleado
-
-* Revisar pestaña **Notas** y chatter para confirmar registro del envío
-* Validar comportamiento con:
-
-  * Empleados sin correo
-  * Sin fecha de cumpleaños
-  * Cumpleaños hoy/mañana
-
-#### Verificar permisos
-
-* Probar con usuario no administrador
-* Confirmar acceso a recordatorios y correos
+* Empleados sin correo o fecha
+* Cumpleaños hoy/mañana
+* Acceso con usuario no administrador
 
 ---
 
-### 3. pos\_table\_number
+### 3. **pos\_table\_number**
 
-#### Configuración inicial
+#### En POS
 
-* Confirmar instalación del módulo y que el POS esté operativo
-
-#### Crear orden en POS
-
-* Abrir nueva orden, seleccionar producto
-* Verificar presencia del campo/botón para ingresar número de mesa
-* Ingresar número (ej: 12), guardar y verificar
-
-#### Verificaciones visuales
-
-* Confirmar que el prompt funciona
-* Número visible en la orden
-
-#### Verificar en recibo y factura
-
-* Finalizar orden e imprimir recibo. Confirmar que aparece "Número de Mesa: 12"
-* Ir a **Ventas > Facturas** y verificar que el número se mantiene
-
-#### Verificar en backend POS
-
-* Ir a **Ventas > Órdenes del POS**, buscar orden y verificar campo
-* Probar filtros por número de mesa
+* Abrir sesión ▶ crear orden
+* Ver campo “Número de mesa” ▶ ingresar y guardar
+* Imprimir recibo ▶ “Número de Mesa: X”
+* Ventas ▶ Órdenes POS ▶ filtro y edición
 
 #### Casos especiales
 
-* Probar con formatos: "01", "12A", "123456"
-* Crear orden sin número. Confirmar funcionamiento y que no se imprime nada
-* Cambiar número luego de creada la orden. Confirmar actualización
-* Validar persistencia tras cerrar y reabrir POS
-
-#### Historial
-
-* Confirmar que el chatter de la orden registra cambios con usuario y fecha
+* Formatos “01”, “12A”, “123456”
+* Orden sin número
+* Cambio de número tras creación
+* Chatter registra cambios
 
 ---
 
-### 4. stock\_quality\_check
+### 4. **stock\_quality\_check**
 
-#### Configuración inicial
+#### Preparación
 
-* En **Ajustes > Empresa**, activar "Requerir Verificación de Calidad"
+* Ajustes ▶ Empresa ▶ activar “Requerir Verificación de Calidad”
 
-#### Crear transferencia
+#### Flujo de transferencias
 
-* Ir a **Inventario > Transferencias**
-* Crear nueva transferencia con productos
-* Confirmar estado inicial "En espera" y no validable hasta verificar
+1. Inventario ▶ Transferencias ▶ crear
+2. Estado “En espera” hasta verificar
+3. Botón “Verificar Calidad” ▶ aprobar/rechazar
+4. Validar transferencia cuando esté aprobada
 
-#### Verificación de calidad
+#### Casos y historial
 
-* Usar botón "Verificar Calidad" para abrir wizard
-* Probar:
-
-  * Aprobación: cambiar estado, agregar nota, permitir validación
-  * Rechazo: cancelar transferencia, registrar nota
-
-#### Validación
-
-* Validar transferencia aprobada
-* Intentar validar transferencia sin verificar y confirmar bloqueo
-
-#### Casos especiales
-
-* Desactivar "Requerir Verificación" y confirmar que ya no bloquea
-* Probar con múltiples transferencias y diferentes productos
-
-#### Historial
-
-* Confirmar que el chatter muestra:
-
-  * Resultado
-  * Fecha
-  * Usuario
-  * Notas
+* Desactivar verificación ▶ validar directamente
+* Múltiples transferencias
+* Chatter con resultado, fecha, usuario, notas
 
 ---
 
-### 5. product\_warranty
+### 5. **product\_warranty**
 
-#### Configuración inicial
+#### Configuración
 
-* Verificar instalación del módulo
-* Ir a **Productos > Productos**
-
-#### Crear producto con garantía
-
-* Crear producto "Producto de Prueba" con:
+* Productos ▶ crear “Producto de Prueba”
 
   * Tipo: Almacenable
-  * Meses de Garantía: 12
-* Confirmar que el campo:
+  * Meses de garantía: 0, 1, 6, 12, 24
 
-  * Está visible
-  * Guarda correctamente
-  * Se muestra en el chatter
+#### Flujo en ventas
 
-#### Crear pedido de venta
+* Ventas ▶ Pedidos ▶ añadir producto
+* Confirmar campo garantía en línea de pedido
+* Probar cambios en producto y ver actualización
 
-* Ir a **Ventas > Pedidos de Venta**
-* Agregar producto con garantía
-* Confirmar:
+#### Historial
 
-  * Valor de garantía se refleja en la línea
-  * Se mantiene tras guardar y editar
+* Chatter registra usuario, fecha y cambios
 
-#### Casos especiales
-
-* Crear productos con 0, 1, 6, 24 meses de garantía
-* Confirmar propagación correcta en pedidos
-* Cambiar garantía en producto y verificar impacto en pedidos
-
-#### Verificación del historial
-
-* Confirmar que los cambios se registran en el chatter con usuario y fecha
-
+---
 
 ## 📁 Estructura del proyecto
 
-```
+```text
+.
 ├── install.sh
 ├── docker-compose.yml
 ├── scripts/
-│   └── test_all.sh (opcional)
-├── src/
-│   ├── account_fiscal_classification/
-│   ├── hr_birthday_reminder/
-│   ├── pos_table_number/
-│   ├── product_warranty/
-│   └── stock_quality_check/
+│   └── test_all.sh        # Opcional: ejecutar todas las pruebas
+└── src/
+    ├── account_fiscal_classification/
+    ├── hr_birthday_reminder/
+    ├── pos_table_number/
+    ├── stock_quality_check/
+    └── product_warranty/
 ```
 
 ---
