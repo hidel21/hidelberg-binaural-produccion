@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_employee_form_inherit_birthday" model="ir.ui.view">
+        <field name="name">hr.employee.form.birthday.reminder</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='birthday']" position="after">
+                <label for="birthday" string="Recordatorio activo"/>
+                <p class="text-muted">Se enviará un correo 7 días antes de esta fecha.</p>
+            </xpath>
+        </field>
+    </record>
+</odoo>
