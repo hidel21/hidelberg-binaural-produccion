@@ -6,7 +6,6 @@ CONTAINER="hidelberg-binaural-produccion-odoo-1"
 # Diccionario: módulo => nombre de la base de datos temporal
 declare -A modules
 modules=(
-  ["product_warranty"]="test_db_pw"
   ["hr_birthday_reminder"]="test_db_birthday"
   ["account_fiscal_classification"]="test_db_account"
   ["pos_table_number"]="test_db_pos"

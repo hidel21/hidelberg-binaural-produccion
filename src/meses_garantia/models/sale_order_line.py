@@ -7,7 +7,6 @@ class SaleOrderLine(models.Model):
         string='Meses de Garantía',
         help='Número de meses de garantía para este producto',
         default=0,
-        tracking=True
     )
 
     @api.onchange('product_id')
