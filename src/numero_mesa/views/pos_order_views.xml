@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Extender la vista de ordenes de POS -->
+        <record id="view_pos_order_form_inherit_mesa" model="ir.ui.view">
+            <field name="name">pos.order.form.inherit.mesa</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='pos_reference']" position="after">
+                    <field name="mesa"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Extender la vista de configuración de POS -->
+        <record id="view_pos_config_form_inherit_mesa" model="ir.ui.view">
+            <field name="name">pos.config.form.inherit.mesa</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_config_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='iface_orderline_customer_notes']" position="after">
+                    <field name="mostrar_mesa"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

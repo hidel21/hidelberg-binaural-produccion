@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_quality_verification_wizard_form" model="ir.ui.view">
+            <field name="name">quality.verification.wizard.form</field>
+            <field name="model">quality.verification.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Verificación de Calidad">
+                    <group>
+                        <field name="picking_id"/>
+                        <field name="verification_result"/>
+                        <field name="notes"/>
+                    </group>
+                    <footer>
+                        <button name="action_approve" string="Aprobar" type="object" class="btn-primary"/>
+                        <button name="action_reject" string="Rechazar" type="object" class="btn-secondary"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_quality_verification_wizard" model="ir.actions.act_window">
+            <field name="name">Verificación de Calidad</field>
+            <field name="res_model">quality.verification.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

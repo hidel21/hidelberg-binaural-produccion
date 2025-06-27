@@ -1,8 +1,0 @@
-<templates id="template" xml:space="preserve">
-    <t t-name="TableInput">
-        <div class="control-button">
-            <label for="table_number">Mesa:</label>
-            <input id="table_number" type="text" t-att-value="state.tableNumber" t-on-input="onChange"/>
-        </div>
-    </t>
-</templates>

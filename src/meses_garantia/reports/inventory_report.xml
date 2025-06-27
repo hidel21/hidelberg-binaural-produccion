@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Extender el reporte de inventario -->
+        <record id="report_stock_inventory_inherit_garantia" model="ir.ui.view">
+            <field name="name">stock.inventory.report.inherit.garantia</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.report_inventory"/>
+            <field name="arch" type="xml">
+                <xpath expr="//table/tbody" position="inside">
+                    <tr>
+                        <th>Meses de Garantía</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <field name="product_id"/>
+                            <field name="garantia_meses"/>
+                        </td>
+                    </tr>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

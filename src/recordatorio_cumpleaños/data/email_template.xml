@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Template de correo para recordatorio de cumpleaños -->
+        <record id="email_template_birthday_reminder" model="mail.template">
+            <field name="name">Recordatorio de Cumpleaños</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="subject">Recordatorio: Cumpleaños de ${object.name}</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="email_to">${(object.work_email or '')|safe}</field>
+            <field name="body_html"><![CDATA[
+                <p>Estimado/a
+                <p>Te recordamos que en 7 días será tu cumpleaños y queremos felicitarte por adelantado.</p>
+                <p>Es un placer contar contigo en nuestro equipo y celebrar este día tan especial.</p>
+                <p>Te deseamos un día lleno de alegría y buenos deseos.</p>
+                <p>Saludos cordiales,</p>
+                <p>El equipo de Recursos Humanos</p>
+                <p><small>Este es un mensaje automático generado por el sistema de recordatorio de cumpleaños.</small></p>
+            ]]></field>
+        </record>
+    </data>
+</odoo>

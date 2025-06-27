@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Extender la vista de facturas -->
+        <record id="view_invoice_form_inherit_garantia" model="ir.ui.view">
+            <field name="name">account.move.form.inherit.garantia</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <!-- Agregar el campo de garantía en las líneas de la factura -->
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="after">
+                    <field name="garantia_meses"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
